@@ -3,6 +3,10 @@ package com.zge.leetcode;
 import java.util.Arrays;
 
 public class _1706_WhereWillTheBallFall {
+
+    //Time complexity: O(M * N)
+    //Space complexity: O(N)
+
     public static int[] findBall(int[][] grid){
 //        int rows = grid.length;
         int columns = grid[0].length;
