@@ -38,26 +38,28 @@ public class _19_RemoveNthNodeFromEndOfList {
     //#2
     //Time complexity: O(n)
     //Space complexity: O(1)
-    public static ListNode removeNthFromEnd2(ListNode head, int n){
-        //Move currentNode n steps into list
-        ListNode currentNode = head;
-        for(int i = 0; i < n; i++){
-            currentNode = currentNode.next;
+    public ListNode removeNthFromEnd2(ListNode head, int n){
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+
+        ListNode NodeBeforeRemovedIndex = FindFromEnd(dummy, n + 1);
+
+        NodeBeforeRemovedIndex.next = NodeBeforeRemovedIndex.next.next;
+        return dummy.next;
+    }
+
+    private ListNode FindFromEnd(ListNode head, int k){
+        ListNode p1 = head;
+        for(int i = 0; i < k; i++){
+            p1 = p1.next;
         }
 
-        if(currentNode == null) return head.next;
-
-        //Move both pointers until currentNode reaches the end of list
-        ListNode nodeBeforeRemovedIndex = head;
-
-        while(currentNode != null){
-            currentNode = currentNode.next;
-            nodeBeforeRemovedIndex = nodeBeforeRemovedIndex.next;
+        ListNode p2 = head;
+        while(p1 != null){
+            p1 = p1.next;
+            p2 = p2.next;
         }
-
-        nodeBeforeRemovedIndex.next = nodeBeforeRemovedIndex.next.next;
-
-        return head;
+        return p2;
     }
 
     public static void main(String[] args) {
