@@ -1,48 +1,63 @@
 package com.zge.leetcode;
 
-import java.util.LinkedList;
-
-/*
- * Time complexity: O(n)
- * Space complexity: O(1)
- * */
-
 public class _206_ReverseLinkedList {
-      public class ListNode {
-          int val;
-          ListNode next;
-          ListNode() {}
-          ListNode(int val) { this.val = val; }
-          ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-      }
 
-      public static ListNode reverseList(ListNode head){
-          ListNode prevNode = null;
-          ListNode currNode = head;
+    /*
+    * Iterative
+    * Time complexity: O(n)
+    * Space complexity: O(1)
+    */
+    public static ListNode reverseList(ListNode head){
+        ListNode prevNode = null;
+        ListNode currNode = head;
 
-          while(currNode != null){
-              ListNode nextNode = currNode.next;
-              currNode.next = prevNode;
-              prevNode = currNode;
-              currNode = nextNode;
-          }
-          return prevNode;
-      }
+        while(currNode != null){
+            ListNode nextNode = currNode.next;
+            currNode.next = prevNode;
+            prevNode = currNode;
+            currNode = nextNode;
+        }
+        return prevNode;
+    }
+
+    /*
+    * Recursive
+    * Time complexity: O(n)
+    * Space complexity: O(n)
+    * */
+    public static ListNode reverseList2(ListNode head){
+        if(head == null || head.next == null) return head;
+
+        ListNode last = reverseList2(head.next);
+        head.next.next = head;
+        head.next = null;
+        return last;
+    }
 
     public static void main(String[] args) {
-        LinkedList<Integer> lists = new LinkedList<>();
-        lists.add(1);
-        lists.add(2);
-        lists.add(3);
-        lists.add(4);
-        lists.add(5);
+        ListNode node1 = new ListNode(1);
+        ListNode node2 = new ListNode(2);
+        ListNode node3 = new ListNode(3);
+        ListNode node4 = new ListNode(4);
+        ListNode node5 = new ListNode(5);
 
-//        ListNode head = null;
-//        System.out.println(head.val);
-//        System.out.println(lists.getFirst());
-//        head.val = lists.getFirst();
-//        lists.val = new ListNode(1);
+        node1.next = node2;
+        node2.next = node3;
+        node3.next = node4;
+        node4.next = node5;
+        node5.next = null;
 
-//        System.out.println(reverseList(head));
+        printList(node1);
+        System.out.println();
+        ListNode head = reverseList2(node1);
+        printList(head);
     }
+
+    public static void printList(ListNode head){
+        while(head != null){
+            System.out.print(head.val);
+            head = head.next;
+        }
+    }
+
 }
