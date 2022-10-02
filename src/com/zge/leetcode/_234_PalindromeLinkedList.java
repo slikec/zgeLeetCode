@@ -84,6 +84,7 @@ public class _234_PalindromeLinkedList {
         return prev;
     }
 
+    //Find mid node
     public ListNode findFirstHalfEnd(ListNode head){
         ListNode fast = head;
         ListNode slow = head;
