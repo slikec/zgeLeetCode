@@ -18,6 +18,7 @@ public class _528_RandomPickWithWeight {
     public int pickIndex(){
         int n = preSum.length;
 
+        //Find random target + 1.
         int target = rand.nextInt(preSum[n-1]) + 1;
 
         return leftBound(preSum, target) - 1;
