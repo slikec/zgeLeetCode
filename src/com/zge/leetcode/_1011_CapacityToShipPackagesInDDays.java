@@ -2,8 +2,9 @@ package com.zge.leetcode;
 
 public class _1011_CapacityToShipPackagesInDDays {
     /*
-    * Time complexity: O(n logm)
+    * Time complexity: O(n log(S))
     * Space complexity: O(1)
+    * Similar question: 410
     * */
     public int shipWithinDays(int[] weights, int days){
         int left = 0;
